@@ -3,6 +3,7 @@ import styles from './Filter.module.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { changeFilter } from '../../redux/contacts/contacts-actions';
 import contactsSelectors from '../../redux/contacts/contacts-selectors';
+import { Form } from 'react-bootstrap';
 
 const Filter = () => {
   const filter = useSelector(contactsSelectors.getFilter);
@@ -11,18 +12,19 @@ const Filter = () => {
     dispatch(changeFilter(event.currentTarget.value));
 
   return (
-    <label className={styles.Filter}>
-      Find contacts by name
-      <input
+    <Form className={styles.form} controlId="formBasicEmail">
+      <Form.Label>Name</Form.Label>
+      <Form.Control
         type="text"
+        placeholder="Enter name"
+        pattern="^[a-zA-Zа-яА-ЯІіЇїҐґ]+(([' -][a-zA-Zа-яА-ЯІіЇїҐґ ])?[a-zA-Zа-яА-ЯІіЇїҐґ]*)*$"
+        title="The name can only consist of letters, apostrophes, dashes and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan ..."
         name="filter"
-        pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-        title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
         required
         onChange={onChangeFilter}
         value={filter}
       />
-    </label>
+    </Form>
   );
 };
 

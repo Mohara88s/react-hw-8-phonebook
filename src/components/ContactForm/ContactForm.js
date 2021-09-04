@@ -5,6 +5,7 @@ import styles from './ContactForm.module.css';
 import { connect } from 'react-redux';
 import { addContact } from '../../redux/contacts/contacts-operaions';
 import contactsSelectors from '../../redux/contacts/contacts-selectors';
+import { Form, Button } from 'react-bootstrap';
 
 class ContactForm extends Component {
   state = {
@@ -44,33 +45,38 @@ class ContactForm extends Component {
 
   render() {
     return (
-      <form className={styles.ContactForm} onSubmit={this.hendelSubmit}>
-        <label>
-          Name
-          <input
+      <Form className={styles.form} onSubmit={this.hendelSubmit}>
+        <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Label>Name</Form.Label>
+          <Form.Control
             type="text"
-            name="name"
+            placeholder="Enter name"
             pattern="^[a-zA-Zа-яА-ЯІіЇїҐґ]+(([' -][a-zA-Zа-яА-ЯІіЇїҐґ ])?[a-zA-Zа-яА-ЯІіЇїҐґ]*)*$"
-            title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
+            title="The name can only consist of letters, apostrophes, dashes and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan ..."
+            name="name"
             required
             onChange={this.hendelInputChange}
             value={this.state.name}
           />
-        </label>
-        <label>
-          Number
-          <input
+        </Form.Group>
+
+        <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Label>Number</Form.Label>
+          <Form.Control
             type="tel"
+            placeholder="Enter number"
             name="number"
             pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-            title="Номер телефона должен состоять цифр и может содержать пробелы, тире, круглые скобки и может начинаться с +"
+            title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
             required
             onChange={this.hendelInputChange}
             value={this.state.number}
           />
-        </label>
-        <button type="submit">Add contact</button>
-      </form>
+        </Form.Group>
+        <Button variant="primary" type="submit">
+          Add contact
+        </Button>
+      </Form>
     );
   }
 }

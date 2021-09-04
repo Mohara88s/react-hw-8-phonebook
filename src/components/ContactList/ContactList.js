@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { fetchContacts } from '../../redux/contacts/contacts-operaions';
 import { useEffect } from 'react';
 import contactsSelectors from '../../redux/contacts/contacts-selectors';
+import { Spinner, ListGroup } from 'react-bootstrap';
 
 const ContactList = () => {
   const dispatch = useDispatch();
@@ -15,15 +16,15 @@ const ContactList = () => {
   const filtredContacts = useSelector(contactsSelectors.getFiltredContacts);
   return (
     <>
-      {loading && <h2 className={styles.loading}>thinking...</h2>}
+      {loading && <Spinner animation="border" variant="primary" />}
       {error && <h2 className={styles.error}>{error}</h2>}
-      <ul className={styles.ContactList}>
+      <ListGroup className={styles.contactList}>
         {filtredContacts.map(({ id, name, number }) => (
-          <li key={id} className={styles.item}>
+          <ListGroup.Item key={id}>
             <Contact id={id} name={name} number={number} />
-          </li>
+          </ListGroup.Item>
         ))}
-      </ul>
+      </ListGroup>
     </>
   );
 };

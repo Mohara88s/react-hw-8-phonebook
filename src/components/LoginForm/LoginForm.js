@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { authOperations, authSelectors } from '../../redux/auth';
 import styles from './LoginForm.module.css';
+import { Form, Button, Card } from 'react-bootstrap';
 
 export default function LoginForm() {
   const dispatch = useDispatch();
@@ -29,35 +30,52 @@ export default function LoginForm() {
   const authError = useSelector(authSelectors.getAuthError);
 
   return (
-    <div>
-      <h2>Login page</h2>
+    <>
+      <h2 className={styles.heading}>Login page</h2>
 
-      <form onSubmit={handleSubmit} className={styles.form} autoComplete="off">
-        <label className={styles.label}>
-          Mail
-          <input
+      <Form className={styles.form} onSubmit={handleSubmit}>
+        <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Label>Email address</Form.Label>
+          <Form.Control
             type="email"
+            placeholder="Enter email"
             name="email"
             value={email}
             onChange={handleChange}
           />
-        </label>
+          <Form.Text className="text-muted">
+            We'll never share your email with anyone else.
+          </Form.Text>
+        </Form.Group>
 
-        <label className={styles.label}>
-          Password
-          <input
+        <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Label>Password</Form.Label>
+          <Form.Control
             type="password"
+            placeholder="Password"
             name="password"
             value={password}
             onChange={handleChange}
           />
-        </label>
+        </Form.Group>
+        <Button variant="primary" type="submit">
+          Login
+        </Button>
+      </Form>
 
-        <button type="submit">Login</button>
-      </form>
       {authError && (
-        <h2 className={styles.error}>Email or password wrong. Try again!</h2>
+        <Card
+          bg="warning"
+          text="light"
+          style={{ width: '18rem' }}
+          className="mb-2"
+        >
+          <Card.Body>
+            <Card.Title> Error </Card.Title>
+            <Card.Text>Email or password wrong. Try again!</Card.Text>
+          </Card.Body>
+        </Card>
       )}
-    </div>
+    </>
   );
 }

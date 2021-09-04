@@ -3,23 +3,26 @@ import PropTypes from 'prop-types';
 import styles from './Contact.module.css';
 import { useDispatch } from 'react-redux';
 import { deleteContact } from '../../redux/contacts/contacts-operaions';
+import { Button } from 'react-bootstrap';
 
 const Contact = ({ id, name, number }) => {
   const dispatch = useDispatch();
 
   return (
-    <>
-      <p>
-        {name} {number}
-      </p>
-      <button
-        className={styles.button}
+    <div className={styles.contact}>
+      <div className={styles.contact__info}>
+        <p className={styles.name}>{name}</p>
+        <p className={styles.number}>{number}</p>
+      </div>
+
+      <Button
+        variant="primary"
         type="button"
         onClick={() => dispatch(deleteContact(id))}
       >
         Delete
-      </button>
-    </>
+      </Button>
+    </div>
   );
 };
 Contact.propTypes = {

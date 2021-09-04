@@ -1,6 +1,7 @@
 import { useEffect, Suspense, lazy } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Route, Switch, Redirect } from 'react-router-dom';
+import { Spinner } from 'react-bootstrap';
 
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 import PublicRoute from './components/PublicRoute/PublicRoute';
@@ -11,6 +12,7 @@ import AppBar from './components/AppBar/AppBar';
 import { authOperations, authSelectors } from './redux/auth';
 
 import 'modern-normalize/modern-normalize.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import styles from './App.module.css';
 
 const RegisterView = lazy(() => import('./views/RegisterView'));
@@ -30,7 +32,7 @@ function App() {
   return (
     !isFetchingCurrentUser && (
       <Container className={styles.container}>
-        <Suspense fallback={<p>Loading...</p>}>
+        <Suspense fallback={<Spinner animation="border" variant="primary" />}>
           <AppBar />
 
           <Switch>
