@@ -13,7 +13,6 @@ import { authOperations, authSelectors } from './redux/auth';
 
 import 'modern-normalize/modern-normalize.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import styles from './App.module.css';
 
 const RegisterView = lazy(() => import('./views/RegisterView'));
 const LoginView = lazy(() => import('./views/LoginView'));
@@ -31,7 +30,7 @@ function App() {
 
   return (
     !isFetchingCurrentUser && (
-      <Container className={styles.container}>
+      <Container>
         <Suspense fallback={<Spinner animation="border" variant="primary" />}>
           <AppBar />
 

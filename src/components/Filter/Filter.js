@@ -13,7 +13,7 @@ const Filter = () => {
 
   return (
     <Form className={styles.form} controlId="formBasicEmail">
-      <Form.Label>Name</Form.Label>
+      <Form.Label>Filter name</Form.Label>
       <Form.Control
         type="text"
         placeholder="Enter name"
