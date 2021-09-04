@@ -1,6 +1,6 @@
 import { useEffect, Suspense, lazy } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 import PublicRoute from './components/PublicRoute/PublicRoute';
@@ -16,7 +16,6 @@ import styles from './App.module.css';
 const RegisterView = lazy(() => import('./views/RegisterView'));
 const LoginView = lazy(() => import('./views/LoginView'));
 const ContactsView = lazy(() => import('./views/ContactsView'));
-const NotFoundView = lazy(() => import('./views/NotFoundView'));
 const InfoView = lazy(() => import('./views/InfoView'));
 
 function App() {
@@ -52,7 +51,9 @@ function App() {
             </Route>
 
             <Route>
-              <NotFoundView />
+              <>
+                <Redirect to="/info" />
+              </>
             </Route>
           </Switch>
         </Suspense>
