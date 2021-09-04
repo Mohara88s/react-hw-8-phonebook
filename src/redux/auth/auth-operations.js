@@ -12,37 +12,35 @@ const token = {
   },
 };
 
-const register = createAsyncThunk('auth/register', async credentials => {
-  try {
-    const { data } = await axios.post('/users/signup', credentials);
-    token.set(data.token);
-    return data;
-  } catch (error) {
-    console.log('rejected', error);
-  }
-});
+const register = createAsyncThunk(
+  'auth/registration',
+  async (credentials, thunkAPI) => {
+    try {
+      const { data } = await axios.post('/users/signup', credentials);
+      token.set(data.token);
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  },
+);
 
 const logIn = createAsyncThunk('auth/login', async (credentials, thunkAPI) => {
   try {
     const { data } = await axios.post('/users/login', credentials);
-    // console.log(data)
-    // if (!data.token) {
-    //   thunkAPI.rejectWithValue();
-    //   return {user: { name: null, email: null }}}
-
     token.set(data.token);
     return data;
   } catch (error) {
-    console.log('rejected', error);
+    return thunkAPI.rejectWithValue(error.message);
   }
 });
 
-const logOut = createAsyncThunk('auth/logout', async () => {
+const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   try {
     await axios.post('/users/logout');
     token.unset();
   } catch (error) {
-    console.log('rejected', error);
+    return thunkAPI.rejectWithValue(error.message);
   }
 });
 
@@ -53,8 +51,7 @@ const fetchCurrentUser = createAsyncThunk(
     const persistedToken = state.auth.token;
 
     if (persistedToken === null) {
-      console.log('None token');
-      return thunkAPI.rejectWithValue();
+      return thunkAPI.rejectWithValue('None token');
     }
 
     token.set(persistedToken);
@@ -62,7 +59,7 @@ const fetchCurrentUser = createAsyncThunk(
       const { data } = await axios.get('/users/current');
       return data;
     } catch (error) {
-      console.log('rejected', error);
+      return thunkAPI.rejectWithValue(error.message);
     }
   },
 );

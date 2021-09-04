@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { authOperations } from '../../redux/auth';
+import { useDispatch, useSelector } from 'react-redux';
+import { authOperations, authSelectors } from '../../redux/auth';
 import styles from './RegistrationForm.module.css';
 
 export default function RegistrationForm() {
@@ -29,6 +29,7 @@ export default function RegistrationForm() {
     setEmail('');
     setPassword('');
   };
+  const regError = useSelector(authSelectors.getRegError);
 
   return (
     <div>
@@ -62,6 +63,9 @@ export default function RegistrationForm() {
 
         <button type="submit">Registration</button>
       </form>
+      {regError && (
+        <h2>Wrong registration data. Try again with another data!</h2>
+      )}
     </div>
   );
 }

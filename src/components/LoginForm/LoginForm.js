@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { authOperations } from '../../redux/auth';
+import { useDispatch, useSelector } from 'react-redux';
+import { authOperations, authSelectors } from '../../redux/auth';
 import styles from './LoginForm.module.css';
 
 export default function LoginForm() {
@@ -25,6 +25,8 @@ export default function LoginForm() {
     setEmail('');
     setPassword('');
   };
+
+  const authError = useSelector(authSelectors.getAuthError);
 
   return (
     <div>
@@ -53,6 +55,7 @@ export default function LoginForm() {
 
         <button type="submit">Login</button>
       </form>
+      {authError && <h2>Email or password wrong. Try again!</h2>}
     </div>
   );
 }
