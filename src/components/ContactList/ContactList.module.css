@@ -2,7 +2,11 @@
   max-height: 300px;
   overflow: scroll;
 }
-
+.spinner {
+  position: absolute;
+  left: 45%;
+  top: 40%;
+}
 .error {
   color: red;
 }

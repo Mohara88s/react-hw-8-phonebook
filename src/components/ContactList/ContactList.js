@@ -16,7 +16,13 @@ const ContactList = () => {
   const filtredContacts = useSelector(contactsSelectors.getFiltredContacts);
   return (
     <>
-      {loading && <Spinner animation="border" variant="primary" />}
+      {loading && (
+        <Spinner
+          className={styles.spinner}
+          animation="border"
+          variant="primary"
+        />
+      )}
       {error && <h2 className={styles.error}>{error}</h2>}
       <ListGroup className={styles.contactList}>
         {filtredContacts.map(({ id, name, number }) => (
