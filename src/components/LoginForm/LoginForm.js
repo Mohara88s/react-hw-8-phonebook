@@ -55,7 +55,9 @@ export default function LoginForm() {
 
         <button type="submit">Login</button>
       </form>
-      {authError && <h2>Email or password wrong. Try again!</h2>}
+      {authError && (
+        <h2 className={styles.error}>Email or password wrong. Try again!</h2>
+      )}
     </div>
   );
 }

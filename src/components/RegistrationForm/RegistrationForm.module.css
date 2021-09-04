@@ -6,3 +6,6 @@
   flex-direction: column;
   margin-bottom: 15px;
 }
+.error {
+  color: red;
+}

@@ -64,7 +64,9 @@ export default function RegistrationForm() {
         <button type="submit">Registration</button>
       </form>
       {regError && (
-        <h2>Wrong registration data. Try again with another data!</h2>
+        <h2 className={styles.error}>
+          Wrong registration data. Try again with another data!
+        </h2>
       )}
     </div>
   );
