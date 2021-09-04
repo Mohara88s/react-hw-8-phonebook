@@ -1,0 +1,2 @@
+(this["webpackJsonpreact-hw-8-phonebook"]=this["webpackJsonpreact-hw-8-phonebook"]||[]).push([[6],{105:function(n,e,t){n.exports={heading:"Info_heading__GoLju"}},116:function(n,e,t){"use strict";t.r(e),t.d(e,"default",(function(){return h}));var c=t(105),r=t.n(c),a=t(1);function o(){return Object(a.jsx)(a.Fragment,{children:Object(a.jsx)("h2",{className:r.a.heading,children:"Made by Mohara"})})}function h(){return Object(a.jsx)(a.Fragment,{children:Object(a.jsx)(o,{})})}}}]);
+//# sourceMappingURL=6.132b4232.chunk.js.map
